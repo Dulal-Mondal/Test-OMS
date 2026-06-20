@@ -136,8 +136,11 @@ exports.pullFromSBC = async (req, res, next) => {
                     customerPhone: o.customer?.phone || '',
                     customerAddress: o.customer?.address || '',
                     productName: o.product?.name || 'Unknown',
+                    productCode: o.product?.code || null,
                     productPrice: o.product?.price || null,
+                    productSize: o.product?.size || null,
                     productQuantity: o.product?.quantity || 1,
+                    productImage: o.product?.image || null,
                     status: 'PENDING',
                 },
             });
