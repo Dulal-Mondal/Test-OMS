@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;450;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    body {
+        @apply bg-bg text-gray-200 antialiased;
+        font-family: 'Inter', Arial, sans-serif;
+        letter-spacing: -0.006em;
+    }
+}
+
+@layer components {
+    .input {
+        @apply w-full bg-card border border-[#2d3441] rounded-lg px-3.5 py-2.5 text-sm text-gray-100 outline-none transition-all placeholder:text-gray-500 focus:border-accent focus:ring-2 focus:ring-accent/15 focus:bg-surface;
+    }
+
+    .btn {
+        @apply inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-sm font-medium transition-all cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap;
+    }
+
+    .btn-primary {
+        @apply bg-accent text-white hover:bg-blue-600;
+    }
+
+    .btn-outline {
+        @apply border border-[#2d3441] text-gray-200 hover:bg-card hover:border-gray-500;
+    }
+
+    .btn-danger {
+        @apply bg-red-500/15 text-red-400 hover:bg-red-500/25;
+    }
+
+    .btn-sm {
+        @apply px-3 py-1.5 text-[13px];
+    }
+
+    .card {
+        @apply bg-surface border border-border rounded-xl p-5;
+    }
+
+    .stat-num {
+        font-variant-numeric: tabular-nums;
+        letter-spacing: -0.03em;
+        @apply font-bold;
+    }
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    @apply bg-[#2d3441] rounded;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    @apply bg-gray-600;
+}

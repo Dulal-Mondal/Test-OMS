@@ -1,0 +1,54 @@
+// Prisma schema — Test OMS
+// docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")   // Supabase connection pooling এর জন্য
+}
+
+model Order {
+  id            String   @id @default(uuid())
+
+  // SoftBrainChat থেকে আসা order ID
+  sourceOrderId String   @unique @map("source_order_id")
+  source        String   @default("SoftBrainChat")
+  platform      String?  // whatsapp | messenger | instagram
+
+  // Customer
+  customerName    String  @map("customer_name")
+  customerPhone   String  @map("customer_phone")
+  customerAddress String  @map("customer_address")
+
+  // Product
+  productName     String  @map("product_name")
+  productPrice    String? @map("product_price")
+  productQuantity Int     @default(1) @map("product_quantity")
+
+  // Order status
+  status        OrderStatus @default(PENDING)
+  notes         String?
+
+  // Sync info
+  syncedBack    Boolean  @default(false) @map("synced_back")  // SoftBrainChat কে status জানানো হয়েছে কিনা
+
+  createdAt     DateTime @default(now()) @map("created_at")
+  updatedAt     DateTime @updatedAt @map("updated_at")
+
+  @@map("orders")
+  @@index([status])
+  @@index([createdAt])
+}
+
+enum OrderStatus {
+  PENDING
+  CONFIRMED
+  PROCESSING
+  SHIPPED
+  DELIVERED
+  CANCELLED
+}
