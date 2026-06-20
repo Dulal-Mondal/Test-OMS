@@ -164,9 +164,22 @@ export default function OrdersPage() {
                                         <div className="text-xs text-gray-500 max-w-[160px] truncate">{o.customerAddress}</div>
                                     </td>
                                     <td className="px-4 py-3">
-                                        <div className="text-sm text-gray-200">{o.productName}</div>
-                                        <div className="text-xs text-gray-500">
-                                            {o.productPrice && `${o.productPrice} · `}Qty: {o.productQuantity}
+                                        <div className="flex items-center gap-2.5">
+                                            {o.productImage && !o.productImage.startsWith('whatsapp-media:') && (
+                                                <img
+                                                    src={o.productImage}
+                                                    alt={o.productName}
+                                                    className="w-10 h-10 rounded-lg object-cover border border-border flex-shrink-0"
+                                                />
+                                            )}
+                                            <div>
+                                                <div className="text-sm text-gray-200">{o.productName}</div>
+                                                <div className="text-xs text-gray-500">
+                                                    {o.productCode && `Code: ${o.productCode} · `}
+                                                    {o.productSize && `Size: ${o.productSize} · `}
+                                                    {o.productPrice && `${o.productPrice} · `}Qty: {o.productQuantity}
+                                                </div>
+                                            </div>
                                         </div>
                                     </td>
                                     <td className="px-4 py-3">
