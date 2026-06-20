@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const ctrl = require('../controllers/webhook.controller');
-const apiKey = require('../middlewares/apiKey.middleware');
+const apiKey = require('../middlewares/apikey.middleware');
 
 // SoftBrainChat connection test
 router.get('/ping', ctrl.ping);
@@ -9,9 +9,3 @@ router.get('/ping', ctrl.ping);
 router.post('/order', apiKey, ctrl.receiveOrder);
 
 module.exports = router;
-
-
-
-
-
-
